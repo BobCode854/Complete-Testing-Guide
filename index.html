@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Testing Guide</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Prism.js syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ========== TOP NAVBAR ========== -->
+<nav class="top-navbar navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+      <div class="brand-icon"><i class="bi bi-shield-check-fill"></i></div>
+      <span class="brand-name">Complete Testing Guide</span>
+    </a>
+
+    <div class="d-flex align-items-center gap-3 ms-auto">
+      <!-- Search Bar -->
+      <div class="search-wrapper d-none d-md-flex">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="globalSearch" class="search-input" placeholder="Search topics, concepts..." autocomplete="off" />
+        <div id="searchDropdown" class="search-dropdown d-none"></div>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button class="icon-btn" id="themeToggle" title="Toggle theme">
+        <i class="bi bi-moon-fill" id="themeIcon"></i>
+      </button>
+
+      <!-- Sidebar toggle (mobile) -->
+      <button class="icon-btn d-lg-none" id="sidebarToggleMobile">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== LAYOUT WRAPPER ========== -->
+<div class="layout-wrapper">
+
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+
+      <!-- Progress Summary -->
+      <div class="sidebar-progress-card">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <span class="prog-label">Your Progress</span>
+          <span class="prog-percent" id="sidebarProgress">0%</span>
+        </div>
+        <div class="progress" style="height:6px;">
+          <div class="progress-bar" id="sidebarProgressBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Sidebar Nav -->
+      <nav class="sidebar-nav" id="sidebarNav">
+
+        <!-- ── MANUAL TESTING ── -->
+        <div class="nav-section">
+          <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#navManual" aria-expanded="true">
+            <span class="nav-section-icon"><i class="bi bi-journal-text"></i></span>
+            <span class="nav-section-title">Manual Testing</span>
+            <i class="bi bi-chevron-down nav-section-arrow ms-auto"></i>
+          </div>
+          <div class="collapse show" id="navManual">
+            <ul class="nav-items" id="manualNavItems"></ul>
+          </div>
+        </div>
+
+        <!-- ── AUTOMATION TESTING ── -->
+        <div class="nav-section">
+          <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#navAutomation" aria-expanded="false">
+            <span class="nav-section-icon"><i class="bi bi-cpu"></i></span>
+            <span class="nav-section-title">Automation Testing</span>
+            <i class="bi bi-chevron-down nav-section-arrow ms-auto"></i>
+          </div>
+          <div class="collapse" id="navAutomation">
+
+            <!-- Selenium -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navSelenium">
+                <i class="bi bi-browser-chrome nav-sub-icon"></i> Selenium
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navSelenium">
+                <ul class="nav-items" id="seleniumNavItems"></ul>
+              </div>
+            </div>
+
+            <!-- TestNG -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navTestng">
+                <i class="bi bi-check2-square nav-sub-icon"></i> TestNG
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navTestng">
+                <ul class="nav-items" id="testngNavItems"></ul>
+              </div>
+            </div>
+
+            <!-- Cucumber -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navCucumber">
+                <i class="bi bi-file-earmark-code nav-sub-icon"></i> Cucumber
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navCucumber">
+                <ul class="nav-items" id="cucumberNavItems"></ul>
+              </div>
+            </div>
+
+            <!-- Tosca -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navTosca">
+                <i class="bi bi-diagram-3 nav-sub-icon"></i> Tosca
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navTosca">
+                <ul class="nav-items" id="toscaNavItems"></ul>
+              </div>
+            </div>
+
+            <!-- Playwright -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navPlaywright">
+                <i class="bi bi-lightning-charge nav-sub-icon"></i> Playwright
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navPlaywright">
+                <ul class="nav-items" id="playwrightNavItems"></ul>
+              </div>
+            </div>
+
+            <!-- AI With Testing -->
+            <div class="nav-subsection">
+              <div class="nav-subsection-header" data-bs-toggle="collapse" data-bs-target="#navAiTesting">
+                <i class="bi bi-robot nav-sub-icon"></i> AI With Testing
+                <i class="bi bi-chevron-right nav-sub-arrow ms-auto"></i>
+              </div>
+              <div class="collapse" id="navAiTesting">
+                <ul class="nav-items" id="aiTestingNavItems"></ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ── INTERVIEW QUESTIONS ── -->
+        <div class="nav-section">
+          <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#navInterviewQ" aria-expanded="false">
+            <span class="nav-section-icon"><i class="bi bi-chat-quote"></i></span>
+            <span class="nav-section-title">Interview Questions</span>
+            <i class="bi bi-chevron-down nav-section-arrow ms-auto"></i>
+          </div>
+          <div class="collapse" id="navInterviewQ">
+            <ul class="nav-items">
+              <li><a href="#" onclick="showInterviewPage('manual'); return false;" id="iqNav_manual" class="nav-link-item"><span>Manual Testing</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('selenium'); return false;" id="iqNav_selenium" class="nav-link-item"><span>Selenium</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('testng'); return false;" id="iqNav_testng" class="nav-link-item"><span>TestNG</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('cucumber'); return false;" id="iqNav_cucumber" class="nav-link-item"><span>Cucumber</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('tosca'); return false;" id="iqNav_tosca" class="nav-link-item"><span>Tosca</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('playwright'); return false;" id="iqNav_playwright" class="nav-link-item"><span>Playwright</span></a></li>
+              <li><a href="#" onclick="showInterviewPage('ai-testing'); return false;" id="iqNav_ai-testing" class="nav-link-item"><span>AI With Testing</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── SCENARIO BASED QUESTIONS ── -->
+        <div class="nav-section">
+          <div class="nav-section-header" data-bs-toggle="collapse" data-bs-target="#navScenarioQ" aria-expanded="false">
+            <span class="nav-section-icon"><i class="bi bi-lightbulb"></i></span>
+            <span class="nav-section-title">Scenario Based Q&amp;A</span>
+            <i class="bi bi-chevron-down nav-section-arrow ms-auto"></i>
+          </div>
+          <div class="collapse" id="navScenarioQ">
+            <ul class="nav-items">
+              <li><a href="#" onclick="showScenarioPage('manual'); return false;" id="sqNav_manual" class="nav-link-item"><span>Manual Testing</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('selenium'); return false;" id="sqNav_selenium" class="nav-link-item"><span>Selenium</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('testng'); return false;" id="sqNav_testng" class="nav-link-item"><span>TestNG</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('cucumber'); return false;" id="sqNav_cucumber" class="nav-link-item"><span>Cucumber</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('tosca'); return false;" id="sqNav_tosca" class="nav-link-item"><span>Tosca</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('playwright'); return false;" id="sqNav_playwright" class="nav-link-item"><span>Playwright</span></a></li>
+              <li><a href="#" onclick="showScenarioPage('ai-testing'); return false;" id="sqNav_ai-testing" class="nav-link-item"><span>AI With Testing</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- HOME PAGE -->
+    <div id="homePage">
+
+      <!-- Hero -->
+      <section class="hero-section">
+        <div class="hero-bg-shapes">
+          <div class="shape shape-1"></div>
+          <div class="shape shape-2"></div>
+          <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-badge"><i class="bi bi-award-fill me-1"></i> Professional Learning Platform</div>
+          <h1 class="hero-title">Complete Testing Guide</h1>
+          <p class="hero-subtitle">Master Software Testing from fundamentals to advanced automation. Learn Manual Testing, Selenium, TestNG, Cucumber & Tosca with real project scenarios and interview preparation.</p>
+          <div class="hero-stats">
+            <div class="stat-pill"><i class="bi bi-book-fill"></i> <span id="totalTopicsCount">0</span> Topics</div>
+            <div class="stat-pill"><i class="bi bi-chat-quote-fill"></i> 200+ Interview Q&amp;A</div>
+            <div class="stat-pill"><i class="bi bi-code-slash"></i> 100+ Code Examples</div>
+          </div>
+          <div class="hero-cta">
+            <button class="btn-primary-hero" onclick="scrollToSection()">Start Learning <i class="bi bi-arrow-right ms-1"></i></button>
+            <button class="btn-outline-hero" onclick="loadTopic('manual','what-is-testing')">Quick Start <i class="bi bi-lightning-fill ms-1"></i></button>
+          </div>
+        </div>
+        <div class="hero-illustration">
+          <div class="illus-card c1"><i class="bi bi-check-circle-fill"></i><span>Test Case</span></div>
+          <div class="illus-card c2"><i class="bi bi-bug-fill"></i><span>Defect</span></div>
+          <div class="illus-card c3"><i class="bi bi-cpu-fill"></i><span>Automation</span></div>
+          <div class="illus-card c4"><i class="bi bi-graph-up"></i><span>Metrics</span></div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <div id="learningSection" style="padding-top:2rem;"></div>
+
+      <!-- Cards Section -->
+      <section class="section-container">
+        <div class="section-header-block text-center mb-5">
+          <h2 class="section-main-title">Choose Your Learning Path</h2>
+          <p class="section-main-subtitle">Structured curriculum covering every aspect of software testing</p>
+        </div>
+        <div class="row g-4">
+
+          <!-- Manual Testing Card -->
+          <div class="col-lg-6">
+            <div class="path-card path-manual" onclick="loadTopic('manual','what-is-testing')">
+              <div class="path-card-header">
+                <div class="path-icon-wrap manual-icon">
+                  <i class="bi bi-journal-richtext"></i>
+                </div>
+                <div>
+                  <h3 class="path-title">Manual Testing</h3>
+                  <p class="path-desc">Master the art of software testing by hand</p>
+                </div>
+              </div>
+              <div class="path-topics-grid" id="manualTopicsBadges"></div>
+              <div class="path-footer">
+                <span><i class="bi bi-collection"></i> <span id="manualTopicsCount">0</span> Topics</span>
+                <span class="path-cta">Start Learning <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Automation Testing Card -->
+          <div class="col-lg-6">
+            <div class="path-card path-auto" onclick="loadTopic('selenium','selenium-introduction')">
+              <div class="path-card-header">
+                <div class="path-icon-wrap auto-icon">
+                  <i class="bi bi-cpu-fill"></i>
+                </div>
+                <div>
+                  <h3 class="path-title">Automation Testing</h3>
+                  <p class="path-desc">Build powerful automated test suites</p>
+                </div>
+              </div>
+              <div class="path-topics-grid" id="autoTopicsBadges"></div>
+              <div class="path-footer">
+                <span><i class="bi bi-collection"></i> <span id="autoTopicsCount">0</span> Topics</span>
+                <span class="path-cta">Start Learning <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Tools Section -->
+      <section class="section-container">
+        <div class="section-header-block text-center mb-5">
+          <h2 class="section-main-title">Tools & Technologies Covered</h2>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-chip" onclick="loadTopic('selenium','selenium-introduction')"><i class="bi bi-browser-chrome"></i> Selenium</div>
+          <div class="tool-chip" onclick="loadTopic('testng','testng-introduction')"><i class="bi bi-check2-square"></i> TestNG</div>
+          <div class="tool-chip" onclick="loadTopic('cucumber','cucumber-introduction')"><i class="bi bi-file-earmark-code"></i> Cucumber / BDD</div>
+          <div class="tool-chip" onclick="loadTopic('tosca','tosca-introduction')"><i class="bi bi-diagram-3"></i> Tosca</div>
+          <div class="tool-chip" onclick="loadTopic('playwright','playwright-introduction')"><i class="bi bi-lightning-charge"></i> Playwright</div>
+          <div class="tool-chip" onclick="loadTopic('ai-testing','ai-testing-introduction')"><i class="bi bi-robot"></i> AI With Testing</div>
+          <div class="tool-chip"><i class="bi bi-cup-hot"></i> Java</div>
+          <div class="tool-chip"><i class="bi bi-git"></i> Git</div>
+          <div class="tool-chip"><i class="bi bi-layers"></i> Page Object Model</div>
+          <div class="tool-chip"><i class="bi bi-database"></i> Data Driven</div>
+        </div>
+      </section>
+
+      <!-- Progress Section -->
+      <section class="section-container">
+        <div class="progress-section-card">
+          <div class="row align-items-center">
+            <div class="col-md-7">
+              <h3 class="prog-section-title">Track Your Progress</h3>
+              <p class="prog-section-sub">Your learning progress is saved automatically in the browser.</p>
+              <div class="progress mt-3" style="height:10px; border-radius:10px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" id="homeProgressBar" style="width:0%"></div>
+              </div>
+              <div class="d-flex gap-4 mt-3">
+                <div class="prog-stat"><span id="completedCount">0</span><small>Completed</small></div>
+                <div class="prog-stat"><span id="totalTopicsCountHome">0</span><small>Total Topics</small></div>
+                <div class="prog-stat"><span id="homeProgressPercent">0%</span><small>Progress</small></div>
+              </div>
+            </div>
+            <div class="col-md-5 text-center">
+              <div class="prog-circle-wrap">
+                <svg class="prog-circle" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--border)" stroke-width="10"/>
+                  <circle cx="60" cy="60" r="50" fill="none" stroke="var(--accent)" stroke-width="10"
+                    stroke-dasharray="314" stroke-dashoffset="314" id="progressCircle"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <span class="prog-circle-text" id="progressCircleText">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /homePage -->
+
+    <!-- TOPIC PAGE (hidden by default) -->
+    <div id="topicPage" class="d-none">
+      <!-- Breadcrumb -->
+      <nav class="topic-breadcrumb" aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="#" onclick="showHome()"><i class="bi bi-house-fill me-1"></i>Home</a></li>
+          <li class="breadcrumb-item" id="bcSection"></li>
+          <li class="breadcrumb-item active" id="bcTopic"></li>
+        </ol>
+      </nav>
+
+      <!-- Topic Header -->
+      <div class="topic-header-card" id="topicHeader"></div>
+
+      <!-- Topic Body -->
+      <div id="topicBody"></div>
+
+      <!-- Topic Navigation -->
+      <div class="topic-nav-footer">
+        <button class="btn-topic-nav" id="prevTopicBtn" onclick="navigateTopic(-1)">
+          <i class="bi bi-arrow-left me-1"></i> Previous
+        </button>
+        <button class="btn-complete" id="markCompleteBtn">
+          <i class="bi bi-check-circle me-1"></i> Mark as Complete
+        </button>
+        <button class="btn-topic-nav" id="nextTopicBtn" onclick="navigateTopic(1)">
+          Next <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+      </div>
+    </div><!-- /topicPage -->
+
+    <!-- INTERVIEW QUESTIONS PAGE -->
+    <div id="interviewPage" class="d-none">
+      <div class="qpage-header">
+        <nav class="topic-breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#" onclick="showHome()"><i class="bi bi-house-fill me-1"></i>Home</a></li>
+            <li class="breadcrumb-item active">Interview Questions</li>
+          </ol>
+        </nav>
+        <div class="qpage-hero">
+          <div class="qpage-icon"><i class="bi bi-chat-quote-fill"></i></div>
+          <div>
+            <h1 class="qpage-title">Interview Questions</h1>
+            <p class="qpage-sub">Curated interview questions with detailed answers for every technology</p>
+          </div>
+        </div>
+        <div class="qpage-tabs" id="iqTabs">
+          <button class="qtab active" onclick="filterQPage('interview','manual',this)">Manual Testing</button>
+          <button class="qtab" onclick="filterQPage('interview','selenium',this)">Selenium</button>
+          <button class="qtab" onclick="filterQPage('interview','testng',this)">TestNG</button>
+          <button class="qtab" onclick="filterQPage('interview','cucumber',this)">Cucumber</button>
+          <button class="qtab" onclick="filterQPage('interview','tosca',this)">Tosca</button>
+          <button class="qtab" onclick="filterQPage('interview','playwright',this)">Playwright</button>
+          <button class="qtab" onclick="filterQPage('interview','ai-testing',this)">AI With Testing</button>
+        </div>
+        <div class="qpage-filter-row">
+          <input type="text" id="iqSearch" class="qpage-search" placeholder="Search questions..." oninput="searchQPage('interview', this.value)" />
+          <div class="diff-filters">
+            <button class="diff-btn all active" onclick="filterDifficulty('interview','all',this)">All</button>
+            <button class="diff-btn easy" onclick="filterDifficulty('interview','easy',this)">Easy</button>
+            <button class="diff-btn medium" onclick="filterDifficulty('interview','medium',this)">Medium</button>
+            <button class="diff-btn hard" onclick="filterDifficulty('interview','hard',this)">Hard</button>
+          </div>
+        </div>
+      </div>
+      <div class="qpage-body" id="iqBody"></div>
+    </div><!-- /interviewPage -->
+
+    <!-- SCENARIO BASED QUESTIONS PAGE -->
+    <div id="scenarioPage" class="d-none">
+      <div class="qpage-header">
+        <nav class="topic-breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="#" onclick="showHome()"><i class="bi bi-house-fill me-1"></i>Home</a></li>
+            <li class="breadcrumb-item active">Scenario Based Questions</li>
+          </ol>
+        </nav>
+        <div class="qpage-hero">
+          <div class="qpage-icon" style="background:linear-gradient(135deg,#059669,#10b981)"><i class="bi bi-lightbulb-fill"></i></div>
+          <div>
+            <h1 class="qpage-title">Scenario Based Questions</h1>
+            <p class="qpage-sub">Real-world scenarios asked in technical interviews — step-by-step answers</p>
+          </div>
+        </div>
+        <div class="qpage-tabs" id="sqTabs">
+          <button class="qtab active" onclick="filterQPage('scenario','manual',this)">Manual Testing</button>
+          <button class="qtab" onclick="filterQPage('scenario','selenium',this)">Selenium</button>
+          <button class="qtab" onclick="filterQPage('scenario','testng',this)">TestNG</button>
+          <button class="qtab" onclick="filterQPage('scenario','cucumber',this)">Cucumber</button>
+          <button class="qtab" onclick="filterQPage('scenario','tosca',this)">Tosca</button>
+          <button class="qtab" onclick="filterQPage('scenario','playwright',this)">Playwright</button>
+          <button class="qtab" onclick="filterQPage('scenario','ai-testing',this)">AI With Testing</button>
+        </div>
+        <div class="qpage-filter-row">
+          <input type="text" id="sqSearch" class="qpage-search" placeholder="Search scenarios..." oninput="searchQPage('scenario', this.value)" />
+          <div class="diff-filters">
+            <button class="diff-btn all active" onclick="filterDifficulty('scenario','all',this)">All</button>
+            <button class="diff-btn easy" onclick="filterDifficulty('scenario','easy',this)">Easy</button>
+            <button class="diff-btn medium" onclick="filterDifficulty('scenario','medium',this)">Medium</button>
+            <button class="diff-btn hard" onclick="filterDifficulty('scenario','hard',this)">Hard</button>
+          </div>
+        </div>
+      </div>
+      <div class="qpage-body" id="sqBody"></div>
+    </div><!-- /scenarioPage -->
+
+  </main>
+</div><!-- /layout-wrapper -->
+
+<!-- Sidebar overlay (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+  <div id="liveToast" class="toast align-items-center border-0" role="alert">
+    <div class="d-flex">
+      <div class="toast-body" id="toastMsg"></div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-xml-doc.min.js"></script>
+
+<script src="js/data/manual.js"></script>
+<script src="js/data/selenium.js"></script>
+<script src="js/data/testng.js"></script>
+<script src="js/data/cucumber.js"></script>
+<script src="js/data/tosca.js"></script>
+<script src="js/data/playwright.js"></script>
+<script src="js/data/ai-testing.js"></script>
+<script src="js/data/interview-questions.js"></script>
+<script src="js/data/scenario-questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
